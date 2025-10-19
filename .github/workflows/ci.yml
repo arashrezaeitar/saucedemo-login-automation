@@ -31,7 +31,7 @@ jobs:
 
       - name: Run pytest (headless)
         run: |
-          pytest -v --html=reports/login-report.html --self-contained-html
+          pytest -v --maxfail=1 --disable-warnings --html=reports/login-report.html --self-contained-html
 
       - name: Upload HTML report
         if: always()
