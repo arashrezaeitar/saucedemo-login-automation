@@ -1,0 +1,11 @@
+# python
+__pycache__/
+*.pyc
+
+# pytest & reports
+.pytest_cache/
+reports/
+screenshots/
+
+# env
+.env
