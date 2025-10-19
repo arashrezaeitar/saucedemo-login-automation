@@ -62,6 +62,13 @@ ChromeDriver
 
 Pytest-HTML
 
+## 🧪 CI/CD Integration
+This project uses **GitHub Actions** to run Selenium + Pytest automatically on each push.
+- Runs headless Chrome tests
+- Generates HTML report (artifact)
+- Checks code quality via CI pipeline
+
+
 👨‍💻 Author
 
 Arash Rezaei
