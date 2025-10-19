@@ -1,8 +1,9 @@
 # tests/conftest.py
-import tempfile, shutil, pytest
+import tempfile 
+import shutil
+import pytest
 from datetime import datetime
 from pathlib import Path
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -12,20 +13,17 @@ def driver(request):
     """Create a fresh Chrome profile and WebDriver for each test."""
     tmp_profile = tempfile.mkdtemp(prefix="chrome-swag-")
 
-    options = Options()
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1366,768")
-    options.add_argument("--incognito")
-    options.add_argument(f"--user-data-dir={tmp_profile}")
+    opts = Options()
+    opts.add_argument("--headless=new")          
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--window-size=1920,1080")
+    opts.add_argument(f"--user-data-dir={tempfile.mkdtemp()}")  
+    driver = webdriver.Chrome(options=opts)
 
-    driver = webdriver.Chrome(options=options)
-
-    
     request.node.driver = driver
 
     yield driver
-
     driver.quit()
     shutil.rmtree(tmp_profile, ignore_errors=True)
 

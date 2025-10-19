@@ -2,6 +2,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 class LoginPage:
     USERNAME = (By.ID, "user-name")
@@ -41,7 +42,7 @@ class LoginPage:
         try:
             el = self.wait.until(EC.visibility_of_element_located(self.ERROR_BOX))
             return el.text.strip()
-        except Exception:
+        except TimeoutException:
             return ""
 
     def wait_until_inventory_loaded(self):
